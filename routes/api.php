@@ -24,5 +24,5 @@ Route::prefix('path1')->middleware('auth:sanctum')->group(function () {
  */
 
 Route::prefix('path2')->group(function () {
-    Route::get('/prompt-agent', [AgentPromptingController::class, 'promptAgent']);
+    Route::post('/prompt', [AgentPromptingController::class, 'promptAgentWithInput']);
 });
