@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Ai\Agents\BaseAgent;
 
-class AgentPromptingController extends Controller
+class BaseAgentController extends Controller
 {
     public function promptAgentWithInput(Request $request): JsonResponse
     {
         $request->validate([
-            'prompt' => 'required|string|max:1000'
+            'message' => 'required|string|max:1000'
         ]);
 
-        $prompt = $request->input('prompt');
+        $message = $request->input('message');
 
         // -----------------------------------------------
         // Set the specific AI provider and model at
@@ -24,13 +24,13 @@ class AgentPromptingController extends Controller
         // model: "gemini-2.5-flash-lite"
         // -----------------------------------------------
         $response = (new BaseAgent)->prompt(
-            $prompt,
+            $message,
             provider: "openai"
         );
 
         return response()->json([
             'status' => 'success',
-            'user_message' => $prompt,
+            'user_message' => $message,
             'response' => (string) $response,
         ]);
     }

@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Path1\SetupController;
-use App\Http\Controllers\Api\Path2\AgentPromptingController;
+use App\Http\Controllers\Api\Path2\BaseAgentController;
+use App\Http\Controllers\Api\Path2\ConversationalAgentController;
 
 /**
  * Path 1 group
@@ -23,6 +24,8 @@ Route::prefix('path1')->middleware('auth:sanctum')->group(function () {
  * Path 2 group
  */
 
-Route::prefix('path2')->group(function () {
-    Route::post('/prompt', [AgentPromptingController::class, 'promptAgentWithInput']);
+Route::prefix('path2')->middleware('auth:sanctum')->group(function () {
+    Route::post('/message', [BaseAgentController::class, 'promptAgentWithInput']);
+    Route::post('/conversations/start', [ConversationalAgentController::class, 'startConversation']);
+    Route::post('/conversations/continue', [ConversationalAgentController::class, 'continueConversation']);
 });

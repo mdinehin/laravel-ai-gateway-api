@@ -42,7 +42,7 @@ curl --location 'http://localhost:8000/api/path1/generate-token' \
 
 Prompt the AI agent:
 ```
-curl --location 'http://localhost:8000/api/path2/prompt' \
+curl --location 'http://localhost:8000/api/path2/message' \
 --header 'Authorization: Bearer [TOKEN_STRING]' \
---form 'prompt="Which AI model are you?"'
+--form 'message="Which AI model are you?"'
 ```
