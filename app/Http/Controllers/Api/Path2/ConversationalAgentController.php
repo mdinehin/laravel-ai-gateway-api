@@ -12,22 +12,22 @@ class ConversationalAgentController extends Controller
     public function startConversation(Request $request): JsonResponse
     {
         $request->validate([
-            'message' => 'required|string|max:1000'
+            'text' => 'required|string|max:1000',
         ]);
 
         $user = $request->user();
-        $message = $request->input('message');
+        $inputText = $request->input('text');
 
         $response = (new ConversationalAgent)
         ->forUser($user)
-        ->prompt($message);
+        ->prompt($inputText);
 
         return response()->json([
             'status' => 'Start conversation (RemembersConversations)',
             'conversation_id' => $response->conversationId,
-            'user_message' => $message,
+            'input_text' => $inputText,
             'assistant_response' => (string) $response,
-            'hint' => 'Save the conversation_id!'
+            'hint' => 'Save the conversation_id!',
         ]);
     }
 
@@ -35,21 +35,21 @@ class ConversationalAgentController extends Controller
     {
         $request->validate([
             'conversation_id' => 'required|string',
-            'message' => 'required|string|max:1000'
+            'text' => 'required|string|max:1000',
         ]);
 
         $user = $request->user();
-        $message = $request->input('message');
+        $inputText = $request->input('text');
         $conversationId = $request->input('conversation_id');
 
         $response = (new ConversationalAgent)
         ->continue($conversationId, as: $user)
-        ->prompt($message);
+        ->prompt($inputText);
 
         return response()->json([
             'status' => 'Continue conversation (RemembersConversations)',
             'conversation_id' => $response->conversationId,
-            'user_message' => $message,
+            'input_text' => $inputText,
             'assistant_response' => (string) $response,
         ]);
     }
