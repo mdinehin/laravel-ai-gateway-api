@@ -28,6 +28,9 @@ class SentimentAnalyserAgent implements Agent
         ]);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function schema(JsonSchema $schema): array
     {
         return [
