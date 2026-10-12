@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Path2\ConversationalAgentController;
 use App\Http\Controllers\Api\Path2\StructuredOutputAgentController;
 use App\Http\Controllers\Api\Path2\ConfiguredAgentController;
 use App\Http\Controllers\Api\Path3\HasToolsController;
+use App\Http\Controllers\Api\Path3\WebSearchController;
 
 /**
  * Path 1 group
@@ -66,4 +67,7 @@ Route::prefix('path2')->middleware('auth:sanctum')->group(function () {
 Route::prefix('path3')->group(function () {
     Route::post('/tools/time-assistant',
     [HasToolsController::class, 'getRequestedTime']);
+
+    Route::post('/web/search',
+    [WebSearchController::class, 'searchWeb']);
 });
