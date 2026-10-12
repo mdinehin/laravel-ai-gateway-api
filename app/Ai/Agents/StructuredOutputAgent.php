@@ -9,7 +9,7 @@ use Stringable;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Ai\Contracts\HasStructuredOutput;
 
-class StructuredOutputAgent implements Agent
+class StructuredOutputAgent implements Agent, HasStructuredOutput
 {
     use Promptable;
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Path1\SetupController;
 use App\Http\Controllers\Api\Path2\BaseAgentController;
 use App\Http\Controllers\Api\Path2\ConversationalAgentController;
 use App\Http\Controllers\Api\Path2\StructuredOutputAgentController;
+use App\Http\Controllers\Api\Path2\ConfiguredAgentController;
 
 /**
  * Path 1 group
@@ -49,4 +50,10 @@ Route::prefix('path2')->middleware('auth:sanctum')->group(function () {
 
     Route::post('/anonymous/structured',
     [StructuredOutputAgentController::class, 'structuredAnonymousAgent']);
+
+    Route::post('/configured/creative',
+    [ConfiguredAgentController::class, 'writeCreatively']);
+
+    Route::post('/configured/precise',
+    [ConfiguredAgentController::class, 'extractPrecisely']);
 });
