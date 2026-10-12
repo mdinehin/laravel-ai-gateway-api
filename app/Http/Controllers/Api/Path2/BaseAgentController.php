@@ -12,10 +12,10 @@ class BaseAgentController extends Controller
     public function promptAgentWithInput(Request $request): JsonResponse
     {
         $request->validate([
-            'text' => 'required|string|max:1000',
+            'prompt' => 'required|string|max:1000',
         ]);
 
-        $inputText = $request->input('text');
+        $prompt = $request->input('prompt');
 
         // -----------------------------------------------
         // Set the specific AI provider and model at
@@ -25,13 +25,13 @@ class BaseAgentController extends Controller
         // -----------------------------------------------
         $response = (new BaseAgent)
         ->prompt(
-            $inputText,
+            $prompt,
             provider: 'openai'
         );
 
         return response()->json([
             'status' => 'success',
-            'input_text' => $inputText,
+            'prompt' => $prompt,
             'response' => (string) $response,
         ]);
     }

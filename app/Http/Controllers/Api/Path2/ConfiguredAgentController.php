@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\Path2;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Ai\Agents\ConfiguredCreativeAgent;
 use App\Ai\Agents\ConfiguredPreciseAgent;
-use Illuminate\Http\JsonResponse;
 use Laravel\Ai\Responses\StructuredAgentResponse;
 
 class ConfiguredAgentController extends Controller
@@ -14,12 +14,12 @@ class ConfiguredAgentController extends Controller
     public function writeCreatively(Request $request): JsonResponse
     {
         $request->validate([
-            'text' => 'required|string|max:500',
+            'prompt' => 'required|string|max:500',
             'genre' => 'required|string|max:50',
         ]);
 
         $genre = $request->input('genre', 'general');
-        $prompt = "Genre: {$genre}. Task: " . $request->input('text');
+        $prompt = "Genre: {$genre}. Task: " . $request->input('prompt');
 
         /** @var StructuredAgentResponse $response */
         $response = (new ConfiguredCreativeAgent)
@@ -35,18 +35,18 @@ class ConfiguredAgentController extends Controller
     public function extractPrecisely(Request $request): JsonResponse
     {
         $request->validate([
-            'text' => 'required|string|max:2000',
+            'prompt' => 'required|string|max:2000',
         ]);
 
-        $inputText = $request->input('text');
+        $prompt = $request->input('prompt');
 
         /** @var StructuredAgentResponse $response */
         $response = (new ConfiguredPreciseAgent)
-        ->prompt('Extract the contact details from this text: ' . $inputText);
+        ->prompt('Extract the contact details from this text: ' . $prompt);
 
         return response()->json([
             'status' => 'Precise Extractor (Low Temperature)',
-            'input_text' => $inputText,
+            'prompt' => $prompt,
             'response' => [
                 'name' => $response['name'],
                 'email' => $response['email'],

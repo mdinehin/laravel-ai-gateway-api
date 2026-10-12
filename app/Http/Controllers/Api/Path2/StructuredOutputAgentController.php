@@ -15,21 +15,18 @@ class StructuredOutputAgentController extends Controller
     public function analyseSentiment(Request $request): JsonResponse
     {
         $request->validate([
-            'text' => 'required|string|max:2000',
+            'prompt' => 'required|string|max:2000',
         ]);
 
-        $inputText = $request->input('text');
+        $prompt = $request->input('prompt');
 
         /** @var StructuredAgentResponse $response */
         $response = (new StructuredOutputAgent)
-        ->prompt($inputText);
-
-        $jsonString = $response['text'];
-        $structuredResponse = json_decode($jsonString, true);
+        ->prompt($prompt);
 
         return response()->json([
             'status' => 'Sentiment Analysis (StructuredOutput)',
-            'input_text' => $inputText,
+            'prompt' => $prompt,
             'response' => [
                 'sentiment' => $response['sentiment'],
                 'score' => $response['score'],
@@ -51,10 +48,10 @@ class StructuredOutputAgentController extends Controller
     public function structuredAnonymousAgent(Request $request): JsonResponse
     {
         $request->validate([
-            'text' => 'required|string|max:1000',
+            'prompt' => 'required|string|max:1000',
         ]);
 
-        $inputText = $request->input('text');
+        $prompt = $request->input('prompt');
 
         /** @var StructuredAgentResponse $response */
         $response = agent(
@@ -85,11 +82,11 @@ class StructuredOutputAgentController extends Controller
                 ->description('Approximate word count of the source text')
                 ->required(),
             ]
-        )->prompt($inputText);
+        )->prompt($prompt);
 
         return response()->json([
             'status' => 'Anonymous agent with structured output',
-            'input_text' => $inputText,
+            'input_text' => $prompt,
             'response' => [
                 'detected_language' => $response['detected_language'],
                 'is_english' => $response['is_english'],

@@ -44,5 +44,5 @@ Prompt the AI agent:
 ```
 curl --location 'http://localhost:8000/api/path2/base-agent' \
 --header 'Authorization: Bearer [TOKEN_STRING]' \
---form 'text="Which AI model are you?"'
+--form 'prompt="Which AI model are you?"'
 ```
