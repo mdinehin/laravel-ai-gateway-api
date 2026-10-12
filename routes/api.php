@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Path1\SetupController;
 use App\Http\Controllers\Api\Path2\BaseAgentController;
 use App\Http\Controllers\Api\Path2\ConversationalAgentController;
-use App\Http\Controllers\Api\Path2\SentimentAnalyserAgentController;
+use App\Http\Controllers\Api\Path2\StructuredOutputAgentController;
 
 /**
  * Path 1 group
@@ -42,5 +42,11 @@ Route::prefix('path2')->middleware('auth:sanctum')->group(function () {
     [ConversationalAgentController::class, 'continueConversation']);
 
     Route::post('/analysis/sentiment',
-    [SentimentAnalyserAgentController::class, 'analyseSentiment']);
+    [StructuredOutputAgentController::class, 'analyseSentiment']);
+
+    Route::get('/anonymous/simple',
+    [StructuredOutputAgentController::class, 'simpleAnonymousAgent']);
+
+    Route::post('/anonymous/structured',
+    [StructuredOutputAgentController::class, 'structuredAnonymousAgent']);
 });

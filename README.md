@@ -22,7 +22,7 @@ The installation process requires the following tools.
 ## Installation
 
 1. Clone this repository locally with `git clone https://github.com/mdinehin/laravel-ai-sdk.git`
-2. Setup a local PostgreSQL database called `laravel_ai_sdk`
+2. Setup a local PostgreSQL server
 3. Copy the `.env.example` file to `.env` and fill in the database credentials
 4. Add the AI LLM provider keys to `.env` with `OPENAI_API_KEY` and `GEMINI_API_KEY`
 5. Run database migrations with `php artisan migrate`

@@ -26,7 +26,7 @@ class ConversationalAgentController extends Controller
             'status' => 'Start conversation (RemembersConversations)',
             'conversation_id' => $response->conversationId,
             'input_text' => $inputText,
-            'assistant_response' => (string) $response,
+            'response' => (string) $response,
             'hint' => 'Save the conversation_id!',
         ]);
     }
@@ -50,7 +50,7 @@ class ConversationalAgentController extends Controller
             'status' => 'Continue conversation (RemembersConversations)',
             'conversation_id' => $response->conversationId,
             'input_text' => $inputText,
-            'assistant_response' => (string) $response,
+            'response' => (string) $response,
         ]);
     }
 }
