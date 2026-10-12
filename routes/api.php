@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Path2\BaseAgentController;
 use App\Http\Controllers\Api\Path2\ConversationalAgentController;
 use App\Http\Controllers\Api\Path2\StructuredOutputAgentController;
 use App\Http\Controllers\Api\Path2\ConfiguredAgentController;
+use App\Http\Controllers\Api\Path3\HasToolsController;
 
 /**
  * Path 1 group
@@ -56,4 +57,13 @@ Route::prefix('path2')->middleware('auth:sanctum')->group(function () {
 
     Route::post('/configured/precise',
     [ConfiguredAgentController::class, 'extractPrecisely']);
+});
+
+/**
+ * Path 3 group
+ */
+
+Route::prefix('path3')->group(function () {
+    Route::post('/tools/time-assistant',
+    [HasToolsController::class, 'getRequestedTime']);
 });
