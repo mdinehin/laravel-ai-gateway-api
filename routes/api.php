@@ -70,4 +70,7 @@ Route::prefix('path3')->group(function () {
 
     Route::post('/web/search',
     [WebSearchController::class, 'searchWeb']);
+
+    Route::post('/web/fetch',
+    [WebSearchController::class, 'fetchWeb']);
 });
