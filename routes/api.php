@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Path2\StructuredOutputAgentController;
 use App\Http\Controllers\Api\Path2\ConfiguredAgentController;
 use App\Http\Controllers\Api\Path3\HasToolsController;
 use App\Http\Controllers\Api\Path3\WebSearchController;
+use App\Http\Controllers\Api\Path4\FilePromptController;
 
 /**
  * Path 1 group
@@ -73,4 +74,16 @@ Route::prefix('path3')->group(function () {
 
     Route::post('/web/fetch',
     [WebSearchController::class, 'fetchWeb']);
+});
+
+/**
+ * Path 4 group
+ */
+
+Route::prefix('path4')->group(function () {
+    Route::post('/files/process-document',
+    [FilePromptController::class, 'processDocumentFromRequest']);
+
+    Route::post('/files/process-storage',
+    [FilePromptController::class, 'processDocumentFromStorage']);
 });
