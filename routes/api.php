@@ -81,9 +81,15 @@ Route::prefix('path3')->group(function () {
  */
 
 Route::prefix('path4')->group(function () {
-    Route::post('/files/process-document',
+    Route::post('/files/process-document-file',
     [FilePromptController::class, 'processDocumentFromRequest']);
 
-    Route::post('/files/process-storage',
+    Route::post('/files/process-document-storage',
     [FilePromptController::class, 'processDocumentFromStorage']);
+
+    Route::post('/files/process-image-file',
+    [FilePromptController::class, 'processImageFromRequest']);
+
+    Route::post('/files/process-image-url',
+    [FilePromptController::class, 'processImageFromUrl']);
 });

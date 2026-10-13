@@ -8,6 +8,8 @@ use Illuminate\Http\JsonResponse;
 use Laravel\Ai\Responses\StructuredAgentResponse;
 use App\Ai\Agents\DocumentProcessorAgent;
 use Laravel\Ai\Files\Document;
+use Laravel\Ai\Files\Image;
+use App\Ai\Agents\ImageProcessorAgent;
 
 class FilePromptController extends Controller
 {
@@ -62,6 +64,60 @@ class FilePromptController extends Controller
         return response()->json([
             'status' => 'File Prompt (From Local Storage)',
             'prompt' => $prompt,
+            'response' => (string) $response,
+        ]);
+    }
+
+    public function processImageFromRequest(Request $request): JsonResponse
+    {
+        $request->validate([
+            'prompt' => 'required|string|max:500',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif,webp|max:10240',
+        ]);
+
+        $prompt = $request->input('prompt');
+        $imageFile = $request->file('image');
+
+        /** @var StructuredAgentResponse $response */
+        $response = (new ImageProcessorAgent)
+        ->prompt(
+            $prompt,
+            attachments: [
+                $imageFile,
+            ]
+        );
+
+        return response()->json([
+            'status' => 'Image Prompt (From API Request)',
+            'prompt' => $prompt,
+            'filename' => $imageFile->getClientOriginalName(),
+            'response' => (string) $response,
+        ]);
+    }
+
+    public function processImageFromUrl(Request $request): JsonResponse
+    {
+        $request->validate([
+            'prompt' => 'required|string|max:500',
+            'image' => 'required|string|max:1000',
+        ]);
+
+        $prompt = $request->input('prompt');
+        $imageUrl = $request->input('image');
+
+        /** @var StructuredAgentResponse $response */
+        $response = (new ImageProcessorAgent)
+        ->prompt(
+            $prompt,
+            attachments: [
+                Image::fromUrl($imageUrl),
+            ]
+        );
+
+        return response()->json([
+            'status' => 'Image Prompt (From URL)',
+            'prompt' => $prompt,
+            'image_url' => $imageUrl,
             'response' => (string) $response,
         ]);
     }
