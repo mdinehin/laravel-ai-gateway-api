@@ -27,7 +27,8 @@ class ConfiguredCreativeAgent implements Agent
     {
         return implode(' ', [
             'You are a talented creative writer with a vivid imagination.',
-            'Write engaging, original content filled with rich descriptions, compelling characters, and surprising plot twists.',
+            'Write engaging, original content filled with rich descriptions,',
+            'compelling characters, and surprising plot twists.',
             'Adapt your style to the required genre or topic.',
         ]);
     }

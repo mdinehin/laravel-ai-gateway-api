@@ -41,25 +41,25 @@ class StructuredOutputAgent implements Agent, HasStructuredOutput
                 'negative',
                 'neutral',
             ])
-            ->description('The overall sentiment of the text')
+            ->description('The overall sentiment of the text.')
             ->required(),
 
             'score' => $schema
             ->integer()
             ->min(1)
             ->max(10)
-            ->description('Sentiment score from 1 (very negative) to 10 (very positive)')
+            ->description('Sentiment score from 1 (very negative) to 10 (very positive).')
             ->required(),
 
             'topics' => $schema
             ->array()
             ->items($schema->string())
-            ->description('Key topics covered in the text')
+            ->description('Key topics covered in the text.')
             ->required(),
 
             'summary' => $schema
             ->string()
-            ->description('A concise, one-sentence summary of the overall sentiment')
+            ->description('A concise, one-sentence summary of the overall sentiment.')
             ->required(),
         ];
     }

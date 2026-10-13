@@ -32,7 +32,8 @@ class ConfiguredPreciseAgent implements Agent, HasStructuredOutput
             'Extract exactly the information requested.',
             'Present the facts and be concise.',
             'Do not add opinions or embellishments.',
-            'If data was not provided in the input, null or empty values should be used.',
+            'If data was not provided in the input,',
+            'null or empty values should be used.',
         ]);
     }
 
@@ -44,22 +45,22 @@ class ConfiguredPreciseAgent implements Agent, HasStructuredOutput
         return [
             'name' => $schema
             ->string()
-            ->description('Full name of the person')
+            ->description('Full name of the person.')
             ->required(),
 
             'email' => $schema
             ->string()
-            ->description('E-mail address, if found; otherwise, empty')
+            ->description('E-mail address, if found; otherwise, empty.')
             ->required(),
 
             'phone' => $schema
             ->string()
-            ->description('Phone number, if found; otherwise, empty')
+            ->description('Phone number, if found; otherwise, empty.')
             ->required(),
 
             'company' => $schema
             ->string()
-            ->description('Name of the company or organization, if provided')
+            ->description('Name of the company or organization, if provided.')
             ->required(),
         ];
     }
