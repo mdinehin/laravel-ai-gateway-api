@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\Path2\ConfiguredAgentController;
 use App\Http\Controllers\Api\Path3\HasToolsController;
 use App\Http\Controllers\Api\Path3\WebSearchController;
 use App\Http\Controllers\Api\Path4\FilePromptController;
+use App\Http\Controllers\Api\Path4\ImageGeneratorController;
 
 /**
  * Path 1 group
@@ -92,4 +93,7 @@ Route::prefix('path4')->group(function () {
 
     Route::post('/files/process-image-url',
     [FilePromptController::class, 'processImageFromUrl']);
+
+    Route::post('/images/generate',
+    [ImageGeneratorController::class, 'generateImage']);
 });
