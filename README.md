@@ -13,16 +13,16 @@ The source code for my personal AI SDK.
 
 The installation process requires the following tools.
 
-- PHP 8.4
-- Composer
-- PostgreSQL
+- PHP 8.3
+- [Composer](https://getcomposer.org/download/)
+- [PostgreSQL](https://www.postgresql.org/download/)
 - [OpenAI API key](https://platform.openai.com/)
 - [Gemini API key](https://aistudio.google.com/)
 
 ## Installation
 
 1. Clone this repository locally with `git clone https://github.com/mdinehin/laravel-ai-sdk.git`
-2. Setup a local PostgreSQL server
+2. Setup a local PostgreSQL database
 3. Copy the `.env.example` file to `.env` and fill in the database credentials
 4. Add the AI LLM provider keys to `.env` with `OPENAI_API_KEY` and `GEMINI_API_KEY`
 5. Run database migrations with `php artisan migrate`
@@ -31,32 +31,32 @@ The installation process requires the following tools.
 
 ## Prompt AI Agent
 
-The AI Agent can be interacted with through the various API endpoints defined in the Swagger documentation.
+The AI Agent can now be interacted with through the various API endpoints defined in the Swagger documentation.
 
 - L5 Swagger UI: Laravel AI SDK - API Documentation: [http://localhost:8000/api/documentation/](http://localhost:8000/api/documentation/)
 
 ### API Reference
 
-Description | Endpoint
---- | ---
-Health check | `/health-check`
-Verify AI SDK | `/verify-ai-sdk`
-Generate bearer token | `/generate-token`
-Verify generated bearer token | `/me`
-Start conversation with an AI agent | `/conversations/start`
-Continue conversation with the AI agent | `/conversations/continue`
-Prompt AI agent to analyse user sentiment | `/analysis/sentiment`
-Simple anonymous agent | `/anonymous/simple`
-Structured anonymous agent | `/anonymous/structured`
-Creative configured agent | `/configured/creative`
-Precise configured agent | `/configured/precise`
-Tool-assisted agent | `/tools/time-assistant`
-Prompt AI agent to search the web | `/web/search`
-Prompt AI agent to fetch web content | `/web/fetch`
-Process document from file | `/files/process-document-file`
-Process document from local storage | `/files/process-document-storage`
-Process image from file | `/files/process-image-file`
-Process image from URL | `/files/process-image-url`
-Generate image | `/images/generate`
-Generate audio (text-to-speech) | `/audio/generate`
-Generate text (transcription) | `/audio/transcribe`
+| Description | Endpoint |
+| --- | --- |
+| Health check | `/health-check` |
+| Verify AI SDK | `/verify-ai-sdk` |
+| Generate bearer token | `/generate-token` |
+| Verify generated bearer token | `/me` |
+| Start conversation with an AI agent | `/conversations/start` |
+| Continue conversation with the AI agent | `/conversations/continue` |
+| Prompt AI agent to analyse user sentiment | `/analysis/sentiment` |
+| Simple anonymous agent | `/anonymous/simple` |
+| Structured anonymous agent | `/anonymous/structured` |
+| Creative configured agent | `/configured/creative` |
+| Precise configured agent | `/configured/precise` |
+| Tool-assisted agent | `/tools/time-assistant` |
+| Prompt AI agent to search the web | `/web/search` |
+| Prompt AI agent to fetch web content | `/web/fetch` |
+| Process document from file | `/files/process-document-file` |
+| Process document from local storage | `/files/process-document-storage` |
+| Process image from file | `/files/process-image-file` |
+| Process image from URL | `/files/process-image-url` |
+| Generate image | `/images/generate` |
+| Generate audio (text-to-speech) | `/audio/generate` |
+| Generate text (transcription) | `/audio/transcribe` |
