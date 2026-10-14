@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\Path3\WebSearchController;
 use App\Http\Controllers\Api\Path4\FilePromptController;
 use App\Http\Controllers\Api\Path4\ImageGeneratorController;
 use App\Http\Controllers\Api\Path4\AudioGeneratorController;
+use App\Http\Controllers\Api\Path4\TranscriptionGeneratorController;
 
 /**
  * Path 1 group
@@ -100,4 +101,7 @@ Route::prefix('path4')->group(function () {
 
     Route::post('/audio/generate',
     [AudioGeneratorController::class, 'generateAudio']);
+
+    Route::post('/audio/transcribe',
+    [TranscriptionGeneratorController::class, 'transcribeAudio']);
 });
