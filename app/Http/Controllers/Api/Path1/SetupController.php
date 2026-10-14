@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Schema;
+use OpenApi\Attributes as OA;
 
 class SetupController extends Controller
 {
@@ -18,11 +19,37 @@ class SetupController extends Controller
      *
      * @return JsonResponse
      */
+    #[OA\Get(
+        path: "/path1/health-check",
+        tags: ["System Configuration Check"],
+        summary: "Health Check",
+        description: "Check if the Laravel API is running.",
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "OK",
+                content: new OA\JsonContent(
+                    examples: [
+                        new OA\Examples(
+                            example: "response_object",
+                            summary: "Response object #1",
+                            value: [
+                                "status" => "ok",
+                                "message" => "Laravel API is running.",
+                                "laravel_version" => "13.18.1",
+                            ]
+                        ),
+                    ]
+                )
+            ),
+            new OA\Response(response: 500, description: "Internal Server Error"),
+        ]
+    )]
     public function healthCheck(): JsonResponse
     {
         return response()->json([
             'status' => 'ok',
-            'message' => 'Laravel AI API is running!',
+            'message' => 'Laravel API is running.',
             'laravel_version' => app()->version(),
         ]);
     }
@@ -38,6 +65,40 @@ class SetupController extends Controller
      *
      * @return JsonResponse
      */
+    #[OA\Get(
+        path: "/path1/verify-ai-sdk",
+        tags: ["System Configuration Check"],
+        summary: "Verify AI Software Development Kit (SDK)",
+        description: "Check if the Laravel AI Software Development Kit (SDK) is running.",
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "OK",
+                content: new OA\JsonContent(
+                    examples: [
+                        new OA\Examples(
+                            example: "response_object",
+                            summary: "Response object #1",
+                            value: [
+                                "status" => "ready",
+                                "checks" => [
+                                    "ai_config_loaded" => true,
+                                    "conversations_table_exists" => true,
+                                    "messages_table_exists" => true,
+                                    "configured_providers" => [
+                                        "openai",
+                                        "gemini",
+                                    ],
+                                ],
+                                "message" => "AI SDK is fully set up and ready to go.",
+                            ]
+                        ),
+                    ]
+                )
+            ),
+            new OA\Response(response: 500, description: "Internal Server Error"),
+        ]
+    )]
     public function verifyAiSdk(): JsonResponse
     {
         // -----------------------------------------------
@@ -84,7 +145,7 @@ class SetupController extends Controller
                 'configured_providers' => $configuredProviders,
             ],
             'message' => $allChecksPass
-                ? 'AI SDK is fully set up and ready to go!'
+                ? 'AI SDK is fully set up and ready to go.'
                 : 'Some checks failed. Review the details above.',
         ]);
     }
@@ -100,6 +161,87 @@ class SetupController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
+    #[OA\Post(
+        path: "/path1/generate-token",
+        tags: ["System Configuration Check"],
+        summary: "Generate Bearer Token",
+        description: "Generates a bearer token used for authenticated access to secured endpoints.",
+        requestBody: new OA\RequestBody(
+            required: true,
+            description: "User email and password used for authorization.",
+            content: new OA\JsonContent(
+                required: [
+                    "email",
+                    "password",
+                ],
+                properties: [
+                    new OA\Property(property: "email", type: "string", format: "email", example: "demouser@example.com"),
+                    new OA\Property(property: "password", type: "string", format: "password", example: "password"),
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "OK",
+                content: new OA\JsonContent(
+                    examples: [
+                        new OA\Examples(
+                            example: "response_object",
+                            summary: "Response object #1",
+                            value: [
+                                "status" => "success",
+                                "message" => "Token generated successfully. Use this as your Bearer token for all future requests.",
+                                "token" => "[TOKEN_STRING]",
+                                "user" => [
+                                    "id" => 1,
+                                    "name" => "AI SDK Demo User",
+                                    "email" => "demouser@example.com"
+                                ],
+                            ]
+                        ),
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Unauthorized",
+                content: new OA\JsonContent(
+                    examples: [
+                        new OA\Examples(
+                            example: "response_object",
+                            summary: "Response object #1",
+                            value: [
+                                "status" => "error",
+                                "message" => "Invalid credentials.",
+                            ]
+                        ),
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 422,
+                description: "Unprocessable Content",
+                content: new OA\JsonContent(
+                    examples: [
+                        new OA\Examples(
+                            example: "response_object",
+                            summary: "Response object #1",
+                            value: [
+                                "message" => "The password field is required.",
+                                "errors" => [
+                                    "password" => [
+                                        "The password field is required.",
+                                    ]
+                                ],
+                            ]
+                        ),
+                    ]
+                )
+            ),
+            new OA\Response(response: 500, description: "Internal Server Error"),
+        ]
+    )]
     public function generateToken(Request $request): JsonResponse
     {
         // -----------------------------------------------
@@ -153,6 +295,52 @@ class SetupController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
+    #[OA\Get(
+        path: "/path1/me",
+        tags: ["System Configuration Check"],
+        security: [["bearerAuth" => []]],
+        summary: "Verify Bearer Token",
+        description: "Check if the bearer token returns the correct user.",
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "OK",
+                content: new OA\JsonContent(
+                    examples: [
+                        new OA\Examples(
+                            example: "response_object",
+                            summary: "Response object #1",
+                            value: [
+                                "status" => "success",
+                                "user" => [
+                                    "id" => 1,
+                                    "name" => "AI SDK Demo User",
+                                    "email" => "demouser@example.com"
+                                ],
+                                "message" => "You are authenticated and ready to go.",
+                            ]
+                        ),
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Unauthorized",
+                content: new OA\JsonContent(
+                    examples: [
+                        new OA\Examples(
+                            example: "response_object",
+                            summary: "Response object #1",
+                            value: [
+                                "message" => "Unauthenticated.",
+                            ]
+                        ),
+                    ]
+                )
+            ),
+            new OA\Response(response: 500, description: "Internal Server Error"),
+        ]
+    )]
     public function me(Request $request): JsonResponse
     {
         return response()->json([
@@ -162,7 +350,7 @@ class SetupController extends Controller
                 'name' => $request->user()->name,
                 'email' => $request->user()->email,
             ],
-            'message' => 'You are authenticated and ready to go!',
+            'message' => 'You are authenticated and ready to go.',
         ]);
     }
 }

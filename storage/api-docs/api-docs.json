@@ -1,0 +1,273 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel AI SDK - API Documentation",
+        "description": "This documentation provides a concise reference for configuring, calling, and extending AI-powered endpoints.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Local API Server #1"
+        },
+        {
+            "url": "http://localhost:8001/api",
+            "description": "Local API Server #2"
+        }
+    ],
+    "paths": {
+        "/path1/health-check": {
+            "get": {
+                "tags": [
+                    "System Configuration Check"
+                ],
+                "summary": "Health Check",
+                "description": "Check if the Laravel API is running.",
+                "operationId": "0f55ef35b4e61b56ea8b85eed4518c8c",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "ok",
+                                            "message": "Laravel API is running.",
+                                            "laravel_version": "13.18.1"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/path1/verify-ai-sdk": {
+            "get": {
+                "tags": [
+                    "System Configuration Check"
+                ],
+                "summary": "Verify AI Software Development Kit (SDK)",
+                "description": "Check if the Laravel AI Software Development Kit (SDK) is running.",
+                "operationId": "e43611c5f47eef2dccca883b8c001a35",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "ready",
+                                            "checks": {
+                                                "ai_config_loaded": true,
+                                                "conversations_table_exists": true,
+                                                "messages_table_exists": true,
+                                                "configured_providers": [
+                                                    "openai",
+                                                    "gemini"
+                                                ]
+                                            },
+                                            "message": "AI SDK is fully set up and ready to go."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/path1/generate-token": {
+            "post": {
+                "tags": [
+                    "System Configuration Check"
+                ],
+                "summary": "Generate Bearer Token",
+                "description": "Generates a bearer token used for authenticated access to secured endpoints.",
+                "operationId": "cf3a4f42bc90b36495204ea89d74284c",
+                "requestBody": {
+                    "description": "User email and password used for authorization.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "demouser@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "success",
+                                            "message": "Token generated successfully. Use this as your Bearer token for all future requests.",
+                                            "token": "[TOKEN_STRING]",
+                                            "user": {
+                                                "id": 1,
+                                                "name": "AI SDK Demo User",
+                                                "email": "demouser@example.com"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "error",
+                                            "message": "Invalid credentials."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The password field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The password field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/path1/me": {
+            "get": {
+                "tags": [
+                    "System Configuration Check"
+                ],
+                "summary": "Verify Bearer Token",
+                "description": "Check if the bearer token returns the correct user.",
+                "operationId": "1b6f1984d0949280ffc5c9c3ab1f87f0",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "success",
+                                            "user": {
+                                                "id": 1,
+                                                "name": "AI SDK Demo User",
+                                                "email": "demouser@example.com"
+                                            },
+                                            "message": "You are authenticated and ready to go."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Enter JWT Bearer token.",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "System Configuration Check",
+            "description": "System Configuration Check"
+        }
+    ]
+}
