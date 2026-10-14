@@ -1001,6 +1001,292 @@
                     }
                 ]
             }
+        },
+        "/path3/tools/time-assistant": {
+            "post": {
+                "tags": [
+                    "Tools and Web Search"
+                ],
+                "summary": "Tool-assisted Agent",
+                "description": "Prompt a tool-assisted agent with access to real-time information.",
+                "operationId": "21e29a6377dfef34d1cc84a127a3c61a",
+                "requestBody": {
+                    "description": "Prompt used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "What is the local time in London?"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Tool-assisted agent",
+                                            "prompt": "What is the local time in London?",
+                                            "response": "The local time in London is 5:00 PM on Thursday, Jul 30, 2026.",
+                                            "without_tools": "The local time in London is 4:49 PM (16:49) on Tuesday, September 30, 2025."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The prompt field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The prompt field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path3/web/search": {
+            "post": {
+                "tags": [
+                    "Tools and Web Search"
+                ],
+                "summary": "Web Search Agent",
+                "description": "Prompt an AI agent to search the web.",
+                "operationId": "edf345eb93b0f927ec1e7246fcd45b7f",
+                "requestBody": {
+                    "description": "Prompt used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "What is the Laravel AI SDK?"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Web search agent",
+                                            "prompt": "What is the Laravel AI SDK?",
+                                            "response": "The **Laravel AI SDK** is a ..."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The prompt field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The prompt field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path3/web/fetch": {
+            "post": {
+                "tags": [
+                    "Tools and Web Search"
+                ],
+                "summary": "Web Fetch Agent",
+                "description": "Prompt an AI agent fetch web content.",
+                "operationId": "e54b4fda47627c861dbf38b3f11f82b8",
+                "requestBody": {
+                    "description": "Prompt used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "What are the key differences between these two authentication packages? https://laravel.com/docs/13.x/sanctum and https://laravel.com/docs/13.x/passport"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Web fetch agent",
+                                            "prompt": "What are the key differences between these two authentication packages? https://laravel.com/docs/13.x/sanctum and https://laravel.com/docs/13.x/passport",
+                                            "response": "The differences between ..."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The prompt field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The prompt field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -1023,6 +1309,10 @@
         {
             "name": "Agents and Prompting",
             "description": "Agents and Prompting"
+        },
+        {
+            "name": "Tools and Web Search",
+            "description": "Tools and Web Search"
         }
     ]
 }
