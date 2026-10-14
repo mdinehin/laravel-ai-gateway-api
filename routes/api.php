@@ -68,7 +68,7 @@ Route::prefix('path2')->middleware('auth:sanctum')->group(function () {
  * Path 3 group
  */
 
-Route::prefix('path3')->group(function () {
+Route::prefix('path3')->middleware('auth:sanctum')->group(function () {
     Route::post('/tools/time-assistant',
     [HasToolsController::class, 'getRequestedTime']);
 
@@ -83,7 +83,7 @@ Route::prefix('path3')->group(function () {
  * Path 4 group
  */
 
-Route::prefix('path4')->group(function () {
+Route::prefix('path4')->middleware('auth:sanctum')->group(function () {
     Route::post('/files/process-document-file',
     [FilePromptController::class, 'processDocumentFromRequest']);
 
