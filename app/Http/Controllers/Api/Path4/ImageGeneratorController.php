@@ -18,6 +18,9 @@ class ImageGeneratorController extends Controller
 
         $prompt = $request->input('prompt');
 
+        // -----------------------------------------------
+        // Providers: openai, gemini, xai
+        // -----------------------------------------------
         $image = Image::of($prompt)
         ->landscape()
         ->quality('low')
