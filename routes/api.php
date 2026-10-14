@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\Path3\HasToolsController;
 use App\Http\Controllers\Api\Path3\WebSearchController;
 use App\Http\Controllers\Api\Path4\FilePromptController;
 use App\Http\Controllers\Api\Path4\ImageGeneratorController;
+use App\Http\Controllers\Api\Path4\AudioGeneratorController;
 
 /**
  * Path 1 group
@@ -96,4 +97,7 @@ Route::prefix('path4')->group(function () {
 
     Route::post('/images/generate',
     [ImageGeneratorController::class, 'generateImage']);
+
+    Route::post('/audio/generate',
+    [AudioGeneratorController::class, 'generateAudio']);
 });
