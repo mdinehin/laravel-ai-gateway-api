@@ -43,6 +43,7 @@ The AI Agent can now be interacted with through the various API endpoints define
 | Verify AI SDK | `/verify-ai-sdk` |
 | Generate bearer token | `/generate-token` |
 | Verify generated bearer token | `/me` |
+| Prompt base AI agent | `/base-agent` |
 | Start conversation with an AI agent | `/conversations/start` |
 | Continue conversation with the AI agent | `/conversations/continue` |
 | Prompt AI agent to analyse user sentiment | `/analysis/sentiment` |

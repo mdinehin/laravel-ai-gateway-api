@@ -250,6 +250,757 @@
                     }
                 ]
             }
+        },
+        "/path2/base-agent": {
+            "post": {
+                "tags": [
+                    "Agents and Prompting"
+                ],
+                "summary": "Base Agent",
+                "description": "A base AI agent that contains a simple instruction.",
+                "operationId": "66f992d8486af711010fdfabda1fb47a",
+                "requestBody": {
+                    "description": "Prompt used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "What is the capital of Australia?"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Base agent",
+                                            "prompt": "What is the capital of Australia?",
+                                            "response": "Canberra."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The prompt field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The prompt field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path2/configured/creative": {
+            "post": {
+                "tags": [
+                    "Agents and Prompting"
+                ],
+                "summary": "Creative Configured Agent",
+                "description": "Prompt a creative agent configured to have a high temperature.",
+                "operationId": "2d9fed9faebec042351dd5a35ea7f5a0",
+                "requestBody": {
+                    "description": "Prompt and genre used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt",
+                                    "conversation_id"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "Write the first paragraph of a crime novel."
+                                    },
+                                    "genre": {
+                                        "type": "string",
+                                        "example": "mystery"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Creative writer (high temperature)",
+                                            "prompt": "Genre: mystery. Task: Write the first paragraph of a crime novel.",
+                                            "response": "The fog, thick as a shroud of forgotten secrets, ..."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The genre field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The genre field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path2/configured/precise": {
+            "post": {
+                "tags": [
+                    "Agents and Prompting"
+                ],
+                "summary": "Precise Configured Agent",
+                "description": "Prompt a precise agent configured to have a low temperature.",
+                "operationId": "0c257c15d0e2222789fae362e4738765",
+                "requestBody": {
+                    "description": "Prompt used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "Hi, my name is Sarah Chan, and I work at TechVault Inc. You can reach me at schan@techvault.io or call me at (415) 555-0192."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Precise extractor (low temperature)",
+                                            "prompt": "Hi, my name is Sarah Chan, and I work at TechVault Inc. You can reach me at schan@techvault.io or call me at (415) 555-0192",
+                                            "response": {
+                                                "name": "Sarah Chan",
+                                                "email": "schan@techvault.io",
+                                                "phone": "(415) 555-0192",
+                                                "company": "TechVault Inc."
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The prompt field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The prompt field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path2/conversations/start": {
+            "post": {
+                "tags": [
+                    "Agents and Prompting"
+                ],
+                "summary": "Conversational Agent (Start)",
+                "description": "Start conversation with an AI agent.",
+                "operationId": "c8309167479a3638db06135dacb31702",
+                "requestBody": {
+                    "description": "Prompt used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "Hi, my name is Michal, I am a web developer, and I would like to learn."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Conversation started",
+                                            "conversation_id": "019f8500-ef1b-7350-9629-60dcb4ff20a0",
+                                            "prompt": "Hi, my name is Michal, I am a web developer, and I would like to learn.",
+                                            "response": "Hi Michal - nice to meet you.",
+                                            "hint": "Save the conversation_id"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The prompt field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The prompt field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path2/conversations/continue": {
+            "post": {
+                "tags": [
+                    "Agents and Prompting"
+                ],
+                "summary": "Conversational Agent (Continue)",
+                "description": "Continue conversation with the AI agent.",
+                "operationId": "fed6898c871178977fb1d9a1a260e943",
+                "requestBody": {
+                    "description": "Prompt and conversation_id used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt",
+                                    "conversation_id"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "What is my name?"
+                                    },
+                                    "conversation_id": {
+                                        "type": "string",
+                                        "example": "019f8500-ef1b-7350-9629-60dcb4ff20a0"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Conversation continues",
+                                            "conversation_id": "019f8500-ef1b-7350-9629-60dcb4ff20a0",
+                                            "prompt": "What is my name?",
+                                            "response": "Your name is Michal."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The conversation id field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The conversation id field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path2/analysis/sentiment": {
+            "post": {
+                "tags": [
+                    "Agents and Prompting"
+                ],
+                "summary": "Analyse User Sentiment",
+                "description": "Prompt an AI agent to analyse user sentiment.",
+                "operationId": "1d4b6eaeab1453e5c5a630430c2162d3",
+                "requestBody": {
+                    "description": "Prompt used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "I absolutely love this phone! The camera is superb, and the battery lasts all day. The only downside is the price."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Sentiment Analysis (StructuredOutput)",
+                                            "prompt": "I absolutely love this phone! The camera is superb, and the battery lasts all day. The only downside is the price.",
+                                            "response": {
+                                                "sentiment": "positive",
+                                                "score": 9,
+                                                "topics": [
+                                                    "phone",
+                                                    "camera quality",
+                                                    "battery life",
+                                                    "price"
+                                                ],
+                                                "summary": "The sentiment is strongly positive, praising the phone's excellent camera and long battery life while noting the high price as a minor drawback."
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The prompt field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The prompt field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path2/anonymous/simple": {
+            "get": {
+                "tags": [
+                    "Agents and Prompting"
+                ],
+                "summary": "Simple Anonymous Agent",
+                "description": "Prompt a simple, anonymous agent who speaks like a pirate.",
+                "operationId": "f011c0213d25733edc593081bc57fbb4",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Simple anonymous agent",
+                                            "response": "Ahoy! Laravel be a popular PHP web application framework."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/path2/anonymous/structured": {
+            "post": {
+                "tags": [
+                    "Agents and Prompting"
+                ],
+                "summary": "Structured Anonymous Agent",
+                "description": "Prompt a structured, anonymous agent equipped with language translation capabilities.",
+                "operationId": "a634f8e423b1131c1aa000960cc1a7f1",
+                "requestBody": {
+                    "description": "Prompt used to get the repsonse.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "prompt"
+                                ],
+                                "properties": {
+                                    "prompt": {
+                                        "type": "string",
+                                        "example": "Gracias por la respuesta."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "status": "Structured anonymous agent",
+                                            "input_text": "Gracias por la respuesta.",
+                                            "response": {
+                                                "detected_language": "Spanish",
+                                                "is_english": false,
+                                                "english_translation": "Thank you for the response.",
+                                                "source_word_count": 4
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "response_object": {
+                                        "summary": "Response object #1",
+                                        "value": {
+                                            "message": "The prompt field is required.",
+                                            "errors": {
+                                                "password": [
+                                                    "The prompt field is required."
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -268,6 +1019,10 @@
         {
             "name": "System Configuration Check",
             "description": "System Configuration Check"
+        },
+        {
+            "name": "Agents and Prompting",
+            "description": "Agents and Prompting"
         }
     ]
 }
