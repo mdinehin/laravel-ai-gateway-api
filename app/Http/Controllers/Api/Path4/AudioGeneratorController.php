@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api\Path4;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Laravel\Ai\Audio;
 
 class AudioGeneratorController extends Controller
 {
-   public function generateAudio(Request $request): JsonResponse
+    public function generateAudio(Request $request): JsonResponse
     {
         $request->validate([
             'prompt' => 'required|string|max:500',
@@ -23,8 +23,8 @@ class AudioGeneratorController extends Controller
         // Providers: openai, elevenlabs
         // -----------------------------------------------
         $audio = Audio::of($prompt)
-        ->male()
-        ->generate(provider: 'openai');
+            ->male()
+            ->generate(provider: 'openai');
 
         $path = $audio->store('audio', 'public');
 
@@ -35,10 +35,10 @@ class AudioGeneratorController extends Controller
         // Command: php artisan storage:link
         // -----------------------------------------------
         return response()->json([
-            'status' => 'Audio Generator Controller',
+            'status' => 'Generate audio file to local storage',
             'prompt' => $prompt,
             'path' => $path,
-            'url' => asset('storage/' . $path),
+            'url' => asset('storage/'.$path),
         ]);
     }
 }

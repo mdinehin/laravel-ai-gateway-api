@@ -2,34 +2,34 @@
 
 namespace App\Http\Controllers\Api\Path3;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Laravel\Ai\Responses\StructuredAgentResponse;
-use App\Ai\Agents\WebSearchAgent;
 use App\Ai\Agents\WebFetchAgent;
+use App\Ai\Agents\WebSearchAgent;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Laravel\Ai\Responses\StructuredAgentResponse;
 use OpenApi\Attributes as OA;
 
 class WebSearchController extends Controller
 {
     #[OA\Post(
-        path: "/path3/web/search",
-        tags: ["Tools and Web Search"],
-        security: [["bearerAuth" => []]],
-        summary: "Web Search Agent",
-        description: "Prompt an AI agent to search the web.",
+        path: '/path3/web/search',
+        tags: ['Tools and Web Search'],
+        security: [['bearerAuth' => []]],
+        summary: 'Web Search Agent',
+        description: 'Prompt an AI agent to search the web.',
         requestBody: new OA\RequestBody(
             required: true,
-            description: "Prompt used to get the repsonse.",
+            description: 'Prompt used to get the repsonse.',
             content: new OA\JsonContent(
                 required: [
-                    "prompt",
+                    'prompt',
                 ],
                 properties: [
                     new OA\Property(
-                        property: "prompt",
-                        type: "string",
-                        example: "What is the Laravel AI SDK?"
+                        property: 'prompt',
+                        type: 'string',
+                        example: 'What is the Laravel AI SDK?'
                     ),
                 ]
             )
@@ -37,16 +37,16 @@ class WebSearchController extends Controller
         responses: [
             new OA\Response(
                 response: 200,
-                description: "OK",
+                description: 'OK',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "status" => "Web search agent",
-                                "prompt" => "What is the Laravel AI SDK?",
-                                "response" => "The **Laravel AI SDK** is a ...",
+                                'status' => 'Web search agent',
+                                'prompt' => 'What is the Laravel AI SDK?',
+                                'response' => 'The **Laravel AI SDK** is a ...',
                             ]
                         ),
                     ]
@@ -54,14 +54,14 @@ class WebSearchController extends Controller
             ),
             new OA\Response(
                 response: 401,
-                description: "Unauthorized",
+                description: 'Unauthorized',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "Unauthenticated.",
+                                'message' => 'Unauthenticated.',
                             ]
                         ),
                     ]
@@ -69,25 +69,25 @@ class WebSearchController extends Controller
             ),
             new OA\Response(
                 response: 422,
-                description: "Unprocessable Content",
+                description: 'Unprocessable Content',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "The prompt field is required.",
-                                "errors" => [
-                                    "password" => [
-                                        "The prompt field is required.",
-                                    ]
+                                'message' => 'The prompt field is required.',
+                                'errors' => [
+                                    'password' => [
+                                        'The prompt field is required.',
+                                    ],
                                 ],
                             ]
                         ),
                     ]
                 )
             ),
-            new OA\Response(response: 500, description: "Internal Server Error"),
+            new OA\Response(response: 500, description: 'Internal Server Error'),
         ]
     )]
     public function searchWeb(Request $request): JsonResponse
@@ -100,7 +100,7 @@ class WebSearchController extends Controller
 
         /** @var StructuredAgentResponse $response */
         $response = (new WebSearchAgent)
-        ->prompt($prompt);
+            ->prompt($prompt);
 
         return response()->json([
             'status' => 'Web search agent',
@@ -110,23 +110,23 @@ class WebSearchController extends Controller
     }
 
     #[OA\Post(
-        path: "/path3/web/fetch",
-        tags: ["Tools and Web Search"],
-        security: [["bearerAuth" => []]],
-        summary: "Web Fetch Agent",
-        description: "Prompt an AI agent fetch web content.",
+        path: '/path3/web/fetch',
+        tags: ['Tools and Web Search'],
+        security: [['bearerAuth' => []]],
+        summary: 'Web Fetch Agent',
+        description: 'Prompt an AI agent fetch web content.',
         requestBody: new OA\RequestBody(
             required: true,
-            description: "Prompt used to get the repsonse.",
+            description: 'Prompt used to get the repsonse.',
             content: new OA\JsonContent(
                 required: [
-                    "prompt",
+                    'prompt',
                 ],
                 properties: [
                     new OA\Property(
-                        property: "prompt",
-                        type: "string",
-                        example: "What are the key differences between these two authentication packages? https://laravel.com/docs/13.x/sanctum and https://laravel.com/docs/13.x/passport"
+                        property: 'prompt',
+                        type: 'string',
+                        example: 'What are the key differences between these two authentication packages? https://laravel.com/docs/13.x/sanctum and https://laravel.com/docs/13.x/passport'
                     ),
                 ]
             )
@@ -134,16 +134,16 @@ class WebSearchController extends Controller
         responses: [
             new OA\Response(
                 response: 200,
-                description: "OK",
+                description: 'OK',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "status" => "Web fetch agent",
-                                "prompt" => "What are the key differences between these two authentication packages? https://laravel.com/docs/13.x/sanctum and https://laravel.com/docs/13.x/passport",
-                                "response" => "The differences between ...",
+                                'status' => 'Web fetch agent',
+                                'prompt' => 'What are the key differences between these two authentication packages? https://laravel.com/docs/13.x/sanctum and https://laravel.com/docs/13.x/passport',
+                                'response' => 'The differences between ...',
                             ]
                         ),
                     ]
@@ -151,14 +151,14 @@ class WebSearchController extends Controller
             ),
             new OA\Response(
                 response: 401,
-                description: "Unauthorized",
+                description: 'Unauthorized',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "Unauthenticated.",
+                                'message' => 'Unauthenticated.',
                             ]
                         ),
                     ]
@@ -166,25 +166,25 @@ class WebSearchController extends Controller
             ),
             new OA\Response(
                 response: 422,
-                description: "Unprocessable Content",
+                description: 'Unprocessable Content',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "The prompt field is required.",
-                                "errors" => [
-                                    "password" => [
-                                        "The prompt field is required.",
-                                    ]
+                                'message' => 'The prompt field is required.',
+                                'errors' => [
+                                    'password' => [
+                                        'The prompt field is required.',
+                                    ],
                                 ],
                             ]
                         ),
                     ]
                 )
             ),
-            new OA\Response(response: 500, description: "Internal Server Error"),
+            new OA\Response(response: 500, description: 'Internal Server Error'),
         ]
     )]
     public function fetchWeb(Request $request): JsonResponse
@@ -197,7 +197,7 @@ class WebSearchController extends Controller
 
         /** @var StructuredAgentResponse $response */
         $response = (new WebFetchAgent)
-        ->prompt($prompt);
+            ->prompt($prompt);
 
         return response()->json([
             'status' => 'Web fetch agent',

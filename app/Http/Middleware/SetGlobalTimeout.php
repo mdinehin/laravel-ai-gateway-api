@@ -16,6 +16,7 @@ class SetGlobalTimeout
     public function handle(Request $request, Closure $next): Response
     {
         set_time_limit(120);
+
         return $next($request);
     }
 }

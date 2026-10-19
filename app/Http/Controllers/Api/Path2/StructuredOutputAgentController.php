@@ -2,35 +2,36 @@
 
 namespace App\Http\Controllers\Api\Path2;
 
+use App\Ai\Agents\StructuredOutputAgent;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Ai\Agents\StructuredOutputAgent;
+use Illuminate\Http\Request;
 use Laravel\Ai\Responses\StructuredAgentResponse;
-use function Laravel\Ai\{agent};
 use OpenApi\Attributes as OA;
+
+use function Laravel\Ai\agent;
 
 class StructuredOutputAgentController extends Controller
 {
     #[OA\Post(
-        path: "/path2/analysis/sentiment",
-        tags: ["Agents and Prompting"],
-        security: [["bearerAuth" => []]],
-        summary: "Analyse User Sentiment",
-        description: "Prompt an AI agent to analyse user sentiment.",
-         requestBody: new OA\RequestBody(
+        path: '/path2/analysis/sentiment',
+        tags: ['Agents and Prompting'],
+        security: [['bearerAuth' => []]],
+        summary: 'Analyse User Sentiment',
+        description: 'Prompt an AI agent to analyse user sentiment.',
+        requestBody: new OA\RequestBody(
             required: true,
-            description: "Prompt used to get the repsonse.",
+            description: 'Prompt used to get the repsonse.',
             content: new OA\JsonContent(
                 required: [
-                    "prompt",
+                    'prompt',
                 ],
                 properties: [
                     new OA\Property(
-                        property: "prompt",
-                        type: "string",
-                        example: "I absolutely love this phone! The camera is superb, and the battery lasts all day. The only downside is the price."
+                        property: 'prompt',
+                        type: 'string',
+                        example: 'I absolutely love this phone! The camera is superb, and the battery lasts all day. The only downside is the price.'
                     ),
                 ]
             )
@@ -38,25 +39,25 @@ class StructuredOutputAgentController extends Controller
         responses: [
             new OA\Response(
                 response: 200,
-                description: "OK",
+                description: 'OK',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "status" => "Sentiment Analysis (StructuredOutput)",
-                                "prompt" => "I absolutely love this phone! The camera is superb, and the battery lasts all day. The only downside is the price.",
-                                "response" => [
-                                    "sentiment" => "positive",
-                                    "score" => 9,
-                                    "topics" => [
-                                        "phone",
-                                        "camera quality",
-                                        "battery life",
-                                        "price",
+                                'status' => 'Sentiment Analysis (StructuredOutput)',
+                                'prompt' => 'I absolutely love this phone! The camera is superb, and the battery lasts all day. The only downside is the price.',
+                                'response' => [
+                                    'sentiment' => 'positive',
+                                    'score' => 9,
+                                    'topics' => [
+                                        'phone',
+                                        'camera quality',
+                                        'battery life',
+                                        'price',
                                     ],
-                                    "summary" => "The sentiment is strongly positive, praising the phone's excellent camera and long battery life while noting the high price as a minor drawback.",
+                                    'summary' => "The sentiment is strongly positive, praising the phone's excellent camera and long battery life while noting the high price as a minor drawback.",
                                 ],
                             ]
                         ),
@@ -65,14 +66,14 @@ class StructuredOutputAgentController extends Controller
             ),
             new OA\Response(
                 response: 401,
-                description: "Unauthorized",
+                description: 'Unauthorized',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "Unauthenticated.",
+                                'message' => 'Unauthenticated.',
                             ]
                         ),
                     ]
@@ -80,25 +81,25 @@ class StructuredOutputAgentController extends Controller
             ),
             new OA\Response(
                 response: 422,
-                description: "Unprocessable Content",
+                description: 'Unprocessable Content',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "The prompt field is required.",
-                                "errors" => [
-                                    "password" => [
-                                        "The prompt field is required.",
-                                    ]
+                                'message' => 'The prompt field is required.',
+                                'errors' => [
+                                    'password' => [
+                                        'The prompt field is required.',
+                                    ],
                                 ],
                             ]
                         ),
                     ]
                 )
             ),
-            new OA\Response(response: 500, description: "Internal Server Error"),
+            new OA\Response(response: 500, description: 'Internal Server Error'),
         ]
     )]
     public function analyseSentiment(Request $request): JsonResponse
@@ -111,10 +112,10 @@ class StructuredOutputAgentController extends Controller
 
         /** @var StructuredAgentResponse $response */
         $response = (new StructuredOutputAgent)
-        ->prompt($prompt);
+            ->prompt($prompt);
 
         return response()->json([
-            'status' => 'Sentiment Analysis (StructuredOutput)',
+            'status' => 'Agent with structured output',
             'prompt' => $prompt,
             'response' => [
                 'sentiment' => $response['sentiment'],
@@ -126,23 +127,23 @@ class StructuredOutputAgentController extends Controller
     }
 
     #[OA\Get(
-        path: "/path2/anonymous/simple",
-        tags: ["Agents and Prompting"],
-        security: [["bearerAuth" => []]],
-        summary: "Simple Anonymous Agent",
-        description: "Prompt a simple, anonymous agent who speaks like a pirate.",
+        path: '/path2/anonymous/simple',
+        tags: ['Agents and Prompting'],
+        security: [['bearerAuth' => []]],
+        summary: 'Simple Anonymous Agent',
+        description: 'Prompt a simple, anonymous agent who speaks like a pirate.',
         responses: [
             new OA\Response(
                 response: 200,
-                description: "OK",
+                description: 'OK',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "status" => "Simple anonymous agent",
-                                "response" => "Ahoy! Laravel be a popular PHP web application framework.",
+                                'status' => 'Simple anonymous agent',
+                                'response' => 'Ahoy! Laravel be a popular PHP web application framework.',
                             ]
                         ),
                     ]
@@ -150,20 +151,20 @@ class StructuredOutputAgentController extends Controller
             ),
             new OA\Response(
                 response: 401,
-                description: "Unauthorized",
+                description: 'Unauthorized',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "Unauthenticated.",
+                                'message' => 'Unauthenticated.',
                             ]
                         ),
                     ]
                 )
             ),
-            new OA\Response(response: 500, description: "Internal Server Error"),
+            new OA\Response(response: 500, description: 'Internal Server Error'),
         ]
     )]
     public function simpleAnonymousAgent(): void
@@ -176,40 +177,40 @@ class StructuredOutputAgentController extends Controller
     }
 
     #[OA\Post(
-        path: "/path2/anonymous/structured",
-        tags: ["Agents and Prompting"],
-        security: [["bearerAuth" => []]],
-        summary: "Structured Anonymous Agent",
-        description: "Prompt a structured, anonymous agent equipped with language translation capabilities.",
+        path: '/path2/anonymous/structured',
+        tags: ['Agents and Prompting'],
+        security: [['bearerAuth' => []]],
+        summary: 'Structured Anonymous Agent',
+        description: 'Prompt a structured, anonymous agent equipped with language translation capabilities.',
         requestBody: new OA\RequestBody(
             required: true,
-            description: "Prompt used to get the repsonse.",
+            description: 'Prompt used to get the repsonse.',
             content: new OA\JsonContent(
                 required: [
-                    "prompt",
+                    'prompt',
                 ],
                 properties: [
-                    new OA\Property(property: "prompt", type: "string", example: "Gracias por la respuesta."),
+                    new OA\Property(property: 'prompt', type: 'string', example: 'Gracias por la respuesta.'),
                 ]
             )
         ),
         responses: [
             new OA\Response(
                 response: 200,
-                description: "OK",
+                description: 'OK',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "status" => "Structured anonymous agent",
-                                "input_text" => "Gracias por la respuesta.",
-                                "response" => [
-                                    "detected_language" => "Spanish",
-                                    "is_english" => false,
-                                    "english_translation" => "Thank you for the response.",
-                                    "source_word_count" => 4
+                                'status' => 'Structured anonymous agent',
+                                'input_text' => 'Gracias por la respuesta.',
+                                'response' => [
+                                    'detected_language' => 'Spanish',
+                                    'is_english' => false,
+                                    'english_translation' => 'Thank you for the response.',
+                                    'source_word_count' => 4,
                                 ],
                             ]
                         ),
@@ -218,14 +219,14 @@ class StructuredOutputAgentController extends Controller
             ),
             new OA\Response(
                 response: 401,
-                description: "Unauthorized",
+                description: 'Unauthorized',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "Unauthenticated.",
+                                'message' => 'Unauthenticated.',
                             ]
                         ),
                     ]
@@ -233,25 +234,25 @@ class StructuredOutputAgentController extends Controller
             ),
             new OA\Response(
                 response: 422,
-                description: "Unprocessable Content",
+                description: 'Unprocessable Content',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "The prompt field is required.",
-                                "errors" => [
-                                    "password" => [
-                                        "The prompt field is required.",
-                                    ]
+                                'message' => 'The prompt field is required.',
+                                'errors' => [
+                                    'password' => [
+                                        'The prompt field is required.',
+                                    ],
                                 ],
                             ]
                         ),
                     ]
                 )
             ),
-            new OA\Response(response: 500, description: "Internal Server Error"),
+            new OA\Response(response: 500, description: 'Internal Server Error'),
         ]
     )]
     public function structuredAnonymousAgent(Request $request): JsonResponse
@@ -271,25 +272,25 @@ class StructuredOutputAgentController extends Controller
             ]),
             schema: fn (JsonSchema $schema) => [
                 'detected_language' => $schema
-                ->string()
-                ->description('The detected language of the source text')
-                ->required(),
+                    ->string()
+                    ->description('The detected language of the source text')
+                    ->required(),
 
                 'is_english' => $schema
-                ->boolean()
-                ->description('Whether the text is already in English')
-                ->required(),
+                    ->boolean()
+                    ->description('Whether the text is already in English')
+                    ->required(),
 
                 'english_translation' => $schema
-                ->string()
-                ->description('The English translation (same as source text if already in English)')
-                ->required(),
+                    ->string()
+                    ->description('The English translation (same as source text if already in English)')
+                    ->required(),
 
                 'source_word_count' => $schema
-                ->integer()
-                ->min(0)
-                ->description('Approximate word count of the source text')
-                ->required(),
+                    ->integer()
+                    ->min(0)
+                    ->description('Approximate word count of the source text')
+                    ->required(),
             ]
         )->prompt($prompt);
 

@@ -5,8 +5,8 @@ namespace App\Ai\Agents;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\HasTools;
 use Laravel\Ai\Promptable;
-use Stringable;
 use Laravel\Ai\Providers\Tools\WebSearch;
+use Stringable;
 
 class WebSearchAgent implements Agent, HasTools
 {
@@ -40,14 +40,14 @@ class WebSearchAgent implements Agent, HasTools
             // allow - Whitelisted domains
             // -----------------------------------------------
             (new WebSearch)
-            ->max(5)
-            ->allow(
-                [
-                    'laravel.com',
-                    'laravel-news.com',
-                    'github.com',
-                ]
-            ),
+                ->max(5)
+                ->allow(
+                    [
+                        'laravel.com',
+                        'laravel-news.com',
+                        'github.com',
+                    ]
+                ),
         ];
     }
 }

@@ -1,107 +1,102 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Path1\SetupController;
 use App\Http\Controllers\Api\Path2\BaseAgentController;
+use App\Http\Controllers\Api\Path2\ConfiguredAgentController;
 use App\Http\Controllers\Api\Path2\ConversationalAgentController;
 use App\Http\Controllers\Api\Path2\StructuredOutputAgentController;
-use App\Http\Controllers\Api\Path2\ConfiguredAgentController;
 use App\Http\Controllers\Api\Path3\HasToolsController;
 use App\Http\Controllers\Api\Path3\WebSearchController;
+use App\Http\Controllers\Api\Path4\AudioGeneratorController;
 use App\Http\Controllers\Api\Path4\FilePromptController;
 use App\Http\Controllers\Api\Path4\ImageGeneratorController;
-use App\Http\Controllers\Api\Path4\AudioGeneratorController;
 use App\Http\Controllers\Api\Path4\TranscriptionGeneratorController;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Path 1 group
  */
-
 Route::prefix('path1')->group(function () {
     Route::get('/health-check',
-    [SetupController::class, 'healthCheck']);
+        [SetupController::class, 'healthCheck']);
 
     Route::get('/verify-ai-sdk',
-    [SetupController::class, 'verifyAiSdk']);
+        [SetupController::class, 'verifyAiSdk']);
 
     Route::post('/generate-token',
-    [SetupController::class, 'generateToken']);
+        [SetupController::class, 'generateToken']);
 });
 
 Route::prefix('path1')->middleware('auth:sanctum')->group(function () {
     Route::get('/me',
-    [SetupController::class, 'me']);
+        [SetupController::class, 'me']);
 });
 
 /**
  * Path 2 group
  */
-
 Route::prefix('path2')->middleware('auth:sanctum')->group(function () {
     Route::post('/base-agent',
-    [BaseAgentController::class, 'promptAgentWithInput']);
+        [BaseAgentController::class, 'promptAgentWithInput']);
 
     Route::post('/conversations/start',
-    [ConversationalAgentController::class, 'startConversation']);
+        [ConversationalAgentController::class, 'startConversation']);
 
     Route::post('/conversations/continue',
-    [ConversationalAgentController::class, 'continueConversation']);
+        [ConversationalAgentController::class, 'continueConversation']);
 
     Route::post('/analysis/sentiment',
-    [StructuredOutputAgentController::class, 'analyseSentiment']);
+        [StructuredOutputAgentController::class, 'analyseSentiment']);
 
     Route::get('/anonymous/simple',
-    [StructuredOutputAgentController::class, 'simpleAnonymousAgent']);
+        [StructuredOutputAgentController::class, 'simpleAnonymousAgent']);
 
     Route::post('/anonymous/structured',
-    [StructuredOutputAgentController::class, 'structuredAnonymousAgent']);
+        [StructuredOutputAgentController::class, 'structuredAnonymousAgent']);
 
     Route::post('/configured/creative',
-    [ConfiguredAgentController::class, 'writeCreatively']);
+        [ConfiguredAgentController::class, 'writeCreatively']);
 
     Route::post('/configured/precise',
-    [ConfiguredAgentController::class, 'extractPrecisely']);
+        [ConfiguredAgentController::class, 'extractPrecisely']);
 });
 
 /**
  * Path 3 group
  */
-
 Route::prefix('path3')->middleware('auth:sanctum')->group(function () {
     Route::post('/tools/time-assistant',
-    [HasToolsController::class, 'getRequestedTime']);
+        [HasToolsController::class, 'getRequestedTime']);
 
     Route::post('/web/search',
-    [WebSearchController::class, 'searchWeb']);
+        [WebSearchController::class, 'searchWeb']);
 
     Route::post('/web/fetch',
-    [WebSearchController::class, 'fetchWeb']);
+        [WebSearchController::class, 'fetchWeb']);
 });
 
 /**
  * Path 4 group
  */
-
 Route::prefix('path4')->middleware('auth:sanctum')->group(function () {
     Route::post('/files/process-document-file',
-    [FilePromptController::class, 'processDocumentFromRequest']);
+        [FilePromptController::class, 'processDocumentFromRequest']);
 
     Route::post('/files/process-document-storage',
-    [FilePromptController::class, 'processDocumentFromStorage']);
+        [FilePromptController::class, 'processDocumentFromStorage']);
 
     Route::post('/files/process-image-file',
-    [FilePromptController::class, 'processImageFromRequest']);
+        [FilePromptController::class, 'processImageFromRequest']);
 
     Route::post('/files/process-image-url',
-    [FilePromptController::class, 'processImageFromUrl']);
+        [FilePromptController::class, 'processImageFromUrl']);
 
     Route::post('/images/generate',
-    [ImageGeneratorController::class, 'generateImage']);
+        [ImageGeneratorController::class, 'generateImage']);
 
     Route::post('/audio/generate',
-    [AudioGeneratorController::class, 'generateAudio']);
+        [AudioGeneratorController::class, 'generateAudio']);
 
     Route::post('/audio/transcribe',
-    [TranscriptionGeneratorController::class, 'transcribeAudio']);
+        [TranscriptionGeneratorController::class, 'transcribeAudio']);
 });

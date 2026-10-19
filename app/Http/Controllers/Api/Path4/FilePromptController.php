@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Api\Path4;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Laravel\Ai\Responses\StructuredAgentResponse;
 use App\Ai\Agents\DocumentProcessorAgent;
+use App\Ai\Agents\ImageProcessorAgent;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Laravel\Ai\Files\Document;
 use Laravel\Ai\Files\Image;
-use App\Ai\Agents\ImageProcessorAgent;
+use Laravel\Ai\Responses\StructuredAgentResponse;
 
 class FilePromptController extends Controller
 {
-   public function processDocumentFromRequest(Request $request): JsonResponse
+    public function processDocumentFromRequest(Request $request): JsonResponse
     {
         $request->validate([
             'prompt' => 'required|string|max:500',
@@ -25,15 +25,15 @@ class FilePromptController extends Controller
 
         /** @var StructuredAgentResponse $response */
         $response = (new DocumentProcessorAgent)
-        ->prompt(
-            $prompt,
-            attachments: [
-                $document,
-            ]
-        );
+            ->prompt(
+                $prompt,
+                attachments: [
+                    $document,
+                ]
+            );
 
         return response()->json([
-            'status' => 'File Prompt (From API Request)',
+            'status' => 'Process document from file',
             'prompt' => $prompt,
             'filename' => $document->getClientOriginalName(),
             'response' => (string) $response,
@@ -54,15 +54,15 @@ class FilePromptController extends Controller
         // -----------------------------------------------
         /** @var StructuredAgentResponse $response */
         $response = (new DocumentProcessorAgent)
-        ->prompt(
-            $prompt,
-            attachments: [
-                Document::fromStorage('readme.txt'),
-            ]
-        );
+            ->prompt(
+                $prompt,
+                attachments: [
+                    Document::fromStorage('readme.txt'),
+                ]
+            );
 
         return response()->json([
-            'status' => 'File Prompt (From Local Storage)',
+            'status' => 'Process document from local storage',
             'prompt' => $prompt,
             'response' => (string) $response,
         ]);
@@ -80,15 +80,15 @@ class FilePromptController extends Controller
 
         /** @var StructuredAgentResponse $response */
         $response = (new ImageProcessorAgent)
-        ->prompt(
-            $prompt,
-            attachments: [
-                $imageFile,
-            ]
-        );
+            ->prompt(
+                $prompt,
+                attachments: [
+                    $imageFile,
+                ]
+            );
 
         return response()->json([
-            'status' => 'Image Prompt (From API Request)',
+            'status' => 'Process image from file',
             'prompt' => $prompt,
             'filename' => $imageFile->getClientOriginalName(),
             'response' => (string) $response,
@@ -99,23 +99,23 @@ class FilePromptController extends Controller
     {
         $request->validate([
             'prompt' => 'required|string|max:500',
-            'image' => 'required|string|max:1000',
+            'url' => 'required|string|max:1000',
         ]);
 
         $prompt = $request->input('prompt');
-        $imageUrl = $request->input('image');
+        $imageUrl = $request->input('url');
 
         /** @var StructuredAgentResponse $response */
         $response = (new ImageProcessorAgent)
-        ->prompt(
-            $prompt,
-            attachments: [
-                Image::fromUrl($imageUrl),
-            ]
-        );
+            ->prompt(
+                $prompt,
+                attachments: [
+                    Image::fromUrl($imageUrl),
+                ]
+            );
 
         return response()->json([
-            'status' => 'Image Prompt (From URL)',
+            'status' => 'Process image from URL',
             'prompt' => $prompt,
             'image_url' => $imageUrl,
             'response' => (string) $response,

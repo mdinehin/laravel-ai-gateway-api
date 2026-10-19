@@ -2,12 +2,12 @@
 
 namespace App\Ai\Agents;
 
+use App\Ai\Tools\CurrentTimeLookupTool;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\HasTools;
 use Laravel\Ai\Contracts\Tool;
 use Laravel\Ai\Promptable;
 use Stringable;
-use App\Ai\Tools\CurrentTimeLookupTool;
 
 class HasToolsAgent implements Agent, HasTools
 {

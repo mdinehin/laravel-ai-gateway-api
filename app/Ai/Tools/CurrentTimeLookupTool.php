@@ -2,11 +2,11 @@
 
 namespace App\Ai\Tools;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Ai\Contracts\Tool;
 use Laravel\Ai\Tools\Request;
 use Stringable;
-use Carbon\Carbon;
 
 class CurrentTimeLookupTool implements Tool
 {
@@ -29,12 +29,12 @@ class CurrentTimeLookupTool implements Tool
     {
         return [
             'timezone' => $schema
-            ->string()
-            ->description(implode(' ', [
-                'The timezone to get the current time for, in standard timezone format.',
-                "E.g., 'America/New_york', 'Europe/London', 'Asia/Tokyo', 'UTC'",
-            ]))
-            ->required(),
+                ->string()
+                ->description(implode(' ', [
+                    'The timezone to get the current time for, in standard timezone format.',
+                    "E.g., 'America/New_york', 'Europe/London', 'Asia/Tokyo', 'UTC'",
+                ]))
+                ->required(),
         ];
     }
 

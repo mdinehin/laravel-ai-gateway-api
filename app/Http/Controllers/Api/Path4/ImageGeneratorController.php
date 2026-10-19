@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Api\Path4;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Laravel\Ai\Files;
+use Illuminate\Http\Request;
 use Laravel\Ai\Image;
 
 class ImageGeneratorController extends Controller
 {
-   public function generateImage(Request $request): JsonResponse
+    public function generateImage(Request $request): JsonResponse
     {
         $request->validate([
             'prompt' => 'required|string|max:500',
@@ -22,9 +21,9 @@ class ImageGeneratorController extends Controller
         // Providers: openai, gemini, xai
         // -----------------------------------------------
         $image = Image::of($prompt)
-        ->landscape()
-        ->quality('low')
-        ->generate(provider: 'openai');
+            ->landscape()
+            ->quality('low')
+            ->generate(provider: 'openai');
 
         $path = $image->store('', 'public');
 
@@ -35,10 +34,10 @@ class ImageGeneratorController extends Controller
         // Command: php artisan storage:link
         // -----------------------------------------------
         return response()->json([
-            'status' => 'Image Generator Controller',
+            'status' => 'Generate image to local storage',
             'prompt' => $prompt,
             'path' => $path,
-            'url' => asset('storage/' . $path),
+            'url' => asset('storage/'.$path),
         ]);
     }
 }

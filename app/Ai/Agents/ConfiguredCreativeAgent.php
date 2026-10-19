@@ -2,14 +2,14 @@
 
 namespace App\Ai\Agents;
 
+use Laravel\Ai\Attributes\MaxTokens;
+use Laravel\Ai\Attributes\Model;
+use Laravel\Ai\Attributes\Provider;
+use Laravel\Ai\Attributes\Temperature;
+use Laravel\Ai\Attributes\Timeout;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Promptable;
 use Stringable;
-use Laravel\Ai\Attributes\Provider;
-use Laravel\Ai\Attributes\Model;
-use Laravel\Ai\Attributes\Temperature;
-use Laravel\Ai\Attributes\MaxTokens;
-use Laravel\Ai\Attributes\Timeout;
 
 #[Provider('gemini')]
 #[Model('gemini-2.5-flash-lite')]

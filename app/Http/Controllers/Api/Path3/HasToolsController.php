@@ -2,34 +2,35 @@
 
 namespace App\Http\Controllers\Api\Path3;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use function Laravel\Ai\{agent};
-use Laravel\Ai\Responses\StructuredAgentResponse;
 use App\Ai\Agents\HasToolsAgent;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Laravel\Ai\Responses\StructuredAgentResponse;
 use OpenApi\Attributes as OA;
+
+use function Laravel\Ai\agent;
 
 class HasToolsController extends Controller
 {
     #[OA\Post(
-        path: "/path3/tools/time-assistant",
-        tags: ["Tools and Web Search"],
-        security: [["bearerAuth" => []]],
-        summary: "Tool-assisted Agent",
-        description: "Prompt a tool-assisted agent with access to real-time information.",
+        path: '/path3/tools/time-assistant',
+        tags: ['Tools and Web Search'],
+        security: [['bearerAuth' => []]],
+        summary: 'Tool-assisted Agent',
+        description: 'Prompt a tool-assisted agent with access to real-time information.',
         requestBody: new OA\RequestBody(
             required: true,
-            description: "Prompt used to get the repsonse.",
+            description: 'Prompt used to get the repsonse.',
             content: new OA\JsonContent(
                 required: [
-                    "prompt",
+                    'prompt',
                 ],
                 properties: [
                     new OA\Property(
-                        property: "prompt",
-                        type: "string",
-                        example: "What is the local time in London?"
+                        property: 'prompt',
+                        type: 'string',
+                        example: 'What is the local time in London?'
                     ),
                 ]
             )
@@ -37,17 +38,17 @@ class HasToolsController extends Controller
         responses: [
             new OA\Response(
                 response: 200,
-                description: "OK",
+                description: 'OK',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "status" => "Tool-assisted agent",
-                                "prompt" => "What is the local time in London?",
-                                "response" => "The local time in London is 5:00 PM on Thursday, Jul 30, 2026.",
-                                "without_tools" => "The local time in London is 4:49 PM (16:49) on Tuesday, September 30, 2025.",
+                                'status' => 'Tool-assisted agent',
+                                'prompt' => 'What is the local time in London?',
+                                'response' => 'The local time in London is 5:00 PM on Thursday, Jul 30, 2026.',
+                                'without_tools' => 'The local time in London is 4:49 PM (16:49) on Tuesday, September 30, 2025.',
                             ]
                         ),
                     ]
@@ -55,14 +56,14 @@ class HasToolsController extends Controller
             ),
             new OA\Response(
                 response: 401,
-                description: "Unauthorized",
+                description: 'Unauthorized',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "Unauthenticated.",
+                                'message' => 'Unauthenticated.',
                             ]
                         ),
                     ]
@@ -70,25 +71,25 @@ class HasToolsController extends Controller
             ),
             new OA\Response(
                 response: 422,
-                description: "Unprocessable Content",
+                description: 'Unprocessable Content',
                 content: new OA\JsonContent(
                     examples: [
                         new OA\Examples(
-                            example: "response_object",
-                            summary: "Response object #1",
+                            example: 'response_object',
+                            summary: 'Response object #1',
                             value: [
-                                "message" => "The prompt field is required.",
-                                "errors" => [
-                                    "password" => [
-                                        "The prompt field is required.",
-                                    ]
+                                'message' => 'The prompt field is required.',
+                                'errors' => [
+                                    'password' => [
+                                        'The prompt field is required.',
+                                    ],
                                 ],
                             ]
                         ),
                     ]
                 )
             ),
-            new OA\Response(response: 500, description: "Internal Server Error"),
+            new OA\Response(response: 500, description: 'Internal Server Error'),
         ]
     )]
     public function getRequestedTime(Request $request): JsonResponse
@@ -101,15 +102,15 @@ class HasToolsController extends Controller
 
         $withoutTools = agent(
             instructions: implode(' ', [
-            'You are a helpful assistant with access to real-time information.',
-            'When a user asks for the current time, date, or day of the week in any timezone,',
-            'use the CurrentTimeLookupTool class to obtain accurate data.',
-            'Present the information in a clear and accessible way.',
-        ]))->prompt($prompt);
+                'You are a helpful assistant with access to real-time information.',
+                'When a user asks for the current time, date, or day of the week in any timezone,',
+                'use the CurrentTimeLookupTool class to obtain accurate data.',
+                'Present the information in a clear and accessible way.',
+            ]))->prompt($prompt);
 
         /** @var StructuredAgentResponse $response */
         $response = (new HasToolsAgent)
-        ->prompt($prompt);
+            ->prompt($prompt);
 
         return response()->json([
             'status' => 'Tool-assisted agent',

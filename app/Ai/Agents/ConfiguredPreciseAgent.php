@@ -2,16 +2,16 @@
 
 namespace App\Ai\Agents;
 
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Ai\Attributes\MaxTokens;
+use Laravel\Ai\Attributes\Model;
+use Laravel\Ai\Attributes\Provider;
+use Laravel\Ai\Attributes\Temperature;
+use Laravel\Ai\Attributes\Timeout;
 use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Contracts\HasStructuredOutput;
 use Laravel\Ai\Promptable;
 use Stringable;
-use Laravel\Ai\Attributes\Provider;
-use Laravel\Ai\Attributes\Model;
-use Laravel\Ai\Attributes\Temperature;
-use Laravel\Ai\Attributes\MaxTokens;
-use Laravel\Ai\Attributes\Timeout;
-use Illuminate\Contracts\JsonSchema\JsonSchema;
-use Laravel\Ai\Contracts\HasStructuredOutput;
 
 #[Provider('openai')]
 #[Model('gpt-4o-mini')]
@@ -44,24 +44,24 @@ class ConfiguredPreciseAgent implements Agent, HasStructuredOutput
     {
         return [
             'name' => $schema
-            ->string()
-            ->description('Full name of the person.')
-            ->required(),
+                ->string()
+                ->description('Full name of the person.')
+                ->required(),
 
             'email' => $schema
-            ->string()
-            ->description('E-mail address, if found; otherwise, empty.')
-            ->required(),
+                ->string()
+                ->description('E-mail address, if found; otherwise, empty.')
+                ->required(),
 
             'phone' => $schema
-            ->string()
-            ->description('Phone number, if found; otherwise, empty.')
-            ->required(),
+                ->string()
+                ->description('Phone number, if found; otherwise, empty.')
+                ->required(),
 
             'company' => $schema
-            ->string()
-            ->description('Name of the company or organization, if provided.')
-            ->required(),
+                ->string()
+                ->description('Name of the company or organization, if provided.')
+                ->required(),
         ];
     }
 }

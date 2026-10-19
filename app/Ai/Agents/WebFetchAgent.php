@@ -2,12 +2,12 @@
 
 namespace App\Ai\Agents;
 
+use Laravel\Ai\Attributes\Provider;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\HasTools;
 use Laravel\Ai\Promptable;
-use Stringable;
-use Laravel\Ai\Attributes\Provider;
 use Laravel\Ai\Providers\Tools\WebFetch;
+use Stringable;
 
 #[Provider('gemini')]
 class WebFetchAgent implements Agent, HasTools

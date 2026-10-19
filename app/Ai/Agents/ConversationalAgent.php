@@ -2,12 +2,11 @@
 
 namespace App\Ai\Agents;
 
+use Laravel\Ai\Concerns\RemembersConversations;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\Conversational;
-use Laravel\Ai\Messages\Message;
 use Laravel\Ai\Promptable;
 use Stringable;
-use Laravel\Ai\Concerns\RemembersConversations;
 
 class ConversationalAgent implements Agent, Conversational
 {
