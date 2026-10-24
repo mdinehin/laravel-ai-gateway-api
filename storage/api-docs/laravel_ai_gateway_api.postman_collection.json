@@ -1,0 +1,1027 @@
+{
+  "info": {
+    "_postman_id": "6c31a68d-05c9-492f-b16f-e06abaa02040",
+    "name": "laravel_ai_gateway_api",
+    "description": "### Welcome to the Postman collection for the Laravel AI Gateway API project.\n\nThis collection provides a complete set of pre-configured requests for testing and interacting with the Laravel AI Gateway API.\n\nExplore the folders to test multi-provider LLM prompts, structured outputs, and asynchronous background jobs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58976205",
+    "_collection_link": "https://go.postman.co/collection/58976205-6c31a68d-05c9-492f-b16f-e06abaa02040?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Path 1",
+      "item": [
+        {
+          "name": "Health check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path1/health-check",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path1",
+                "health-check"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify AI SDK setup",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path1/verify-ai-sdk",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path1",
+                "verify-ai-sdk"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generate token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "demouser@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path1/generate-token",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path1",
+                "generate-token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Me (User)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path1/me",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path1",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Path 2",
+      "item": [
+        {
+          "name": "Base AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "What is the capital of Australia?",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path2/base-agent",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path2",
+                "base-agent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Conversation start",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "Hi, my name is Michal, I am a web developer, and I would like to learn.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path2/conversations/start",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path2",
+                "conversations",
+                "start"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Conversation continue",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "What is my name?",
+                  "type": "text"
+                },
+                {
+                  "key": "conversation_id",
+                  "value": "01a13f32-e766-7271-9446-516b94772e3c",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path2/conversations/continue",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path2",
+                "conversations",
+                "continue"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Structured output AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "I absolutely love this phone! The camera is superb, and the battery lasts all day. The only downside is the price.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path2/analysis/sentiment",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path2",
+                "analysis",
+                "sentiment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Simple anonymous AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path2/anonymous/simple",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path2",
+                "anonymous",
+                "simple"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Structured anonymous AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "Gracias por la respuesta.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path2/anonymous/structured",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path2",
+                "anonymous",
+                "structured"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Creative configured AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "Write the first paragraph of a crime novel.",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "mystery",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path2/configured/creative",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path2",
+                "configured",
+                "creative"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Precise configured AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "Hi, my name is Sarah Chan, and I work at TechVault Inc. You can reach me at schan@techvault.io or call me at (415) 555-0192.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path2/configured/precise",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path2",
+                "configured",
+                "precise"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Path 3",
+      "item": [
+        {
+          "name": "Tool-assisted AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "What is the local time in London?",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path3/tools/time-assistant",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path3",
+                "tools",
+                "time-assistant"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Web search AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "What is the Laravel AI SDK?",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path3/web/search",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path3",
+                "web",
+                "search"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Web fetch AI agent",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "What are the key differences between these two authentication packages? https://laravel.com/docs/13.x/sanctum and https://laravel.com/docs/13.x/passport",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path3/web/fetch",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path3",
+                "web",
+                "fetch"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Path 4",
+      "item": [
+        {
+          "name": "Process document from file",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "document",
+                  "type": "file",
+                  "description": "File from local machine.",
+                  "src": [
+                    "/C:/Users/admin/test.txt"
+                  ]
+                },
+                {
+                  "key": "prompt",
+                  "value": "Analyse what this text file contains.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path4/files/process-document-file",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path4",
+                "files",
+                "process-document-file"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Process document from storage",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "document",
+                  "type": "file",
+                  "description": "Note (WIP): This parameter requires the file to be uploaded in the request and available locally in storage/app/private during the current development phase.",
+                  "src": [
+                    "/C:/Users/admin/readme.txt"
+                  ]
+                },
+                {
+                  "key": "prompt",
+                  "value": "Analyse what this text file contains.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path4/files/process-document-storage",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path4",
+                "files",
+                "process-document-storage"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Process image from file",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "description": "File from local machine.",
+                  "src": [
+                    "/C:/Users/admin/hamster.jpg"
+                  ]
+                },
+                {
+                  "key": "prompt",
+                  "value": "Describe this image.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path4/files/process-image-file",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path4",
+                "files",
+                "process-image-file"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Process image from URL",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "url",
+                  "value": "https://thebadgeronline.com/wp-content/uploads/2022/11/Halloween-2870607_1920.jpg",
+                  "type": "text"
+                },
+                {
+                  "key": "prompt",
+                  "value": "Describe this image.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path4/files/process-image-url",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path4",
+                "files",
+                "process-image-url"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generate image",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "A friendly fox wearing a bow tie and reading a newspaper.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path4/images/generate",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path4",
+                "images",
+                "generate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generate audio (text-to-speech)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prompt",
+                  "value": "Set in a cozy park where the ordinary turns extraordinary, A Friendly Fox Wearing a Bow Tie and Reading a Newspaper is a charming, whimsical short play about curiosity, unexpected encounters, and the quiet magic of pausing to read between the lines.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path4/audio/generate",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path4",
+                "audio",
+                "generate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generate text (transcription)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio",
+                  "type": "file",
+                  "description": "File from local machine.",
+                  "src": [
+                    "/C:/Users/admin/test.mp3"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/path4/audio/transcribe",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "path4",
+                "audio",
+                "transcribe"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
