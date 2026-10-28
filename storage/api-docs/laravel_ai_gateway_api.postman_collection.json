@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "6c31a68d-05c9-492f-b16f-e06abaa02040",
     "name": "laravel_ai_gateway_api",
-    "description": "### Welcome to the Postman collection for the Laravel AI Gateway API project.\n\nThis collection provides a complete set of pre-configured requests for testing and interacting with the Laravel AI Gateway API.\n\nExplore the folders to test multi-provider LLM prompts, structured outputs, and asynchronous background jobs.",
+    "description": "### Welcome to the Postman collection for the Laravel AI Gateway API project.\n\nThis collection provides a complete set of pre-configured requests for testing and interacting with the RESTful API.\n\nExplore the folders to test multi-provider LLM prompts, structured outputs, and asynchronous background jobs.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "58976205",
     "_collection_link": "https://go.postman.co/collection/58976205-6c31a68d-05c9-492f-b16f-e06abaa02040?source=collection_link"
