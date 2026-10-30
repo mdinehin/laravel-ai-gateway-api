@@ -23,13 +23,13 @@ Route::prefix('path1')->group(function () {
     Route::get('/verify-ai-sdk',
         [SetupController::class, 'verifyAiSdk']);
 
-    Route::post('/generate-token',
-        [SetupController::class, 'generateToken']);
+    Route::post('/login',
+        [SetupController::class, 'login']);
 });
 
 Route::prefix('path1')->middleware('auth:sanctum')->group(function () {
-    Route::get('/me',
-        [SetupController::class, 'me']);
+    Route::get('/user',
+        [SetupController::class, 'user']);
 });
 
 /**

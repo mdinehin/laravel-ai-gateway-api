@@ -54,7 +54,7 @@ The AI Agent is accessible through the API endpoints defined in the Swagger docu
 
 Swagger UI: [http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
 
-Postman collection: [storage/api-docs/laravel_ai_gateway_api.postman_collection.json](https://github.com/mdinehin/laravel-ai-gateway-api/blob/main/storage/api-docs/laravel_ai_gateway_api.postman_collection.json)
+Postman collection: [laravel_ai_gateway_api.postman_collection.json](https://github.com/mdinehin/laravel-ai-gateway-api/blob/main/storage/api-docs/laravel_ai_gateway_api.postman_collection.json)
 
 ### API Reference
 
@@ -62,8 +62,8 @@ Postman collection: [storage/api-docs/laravel_ai_gateway_api.postman_collection.
 | --- | --- |
 | `/health-check` | Health check |
 | `/verify-ai-sdk` | Verify AI SDK setup |
-| `/generate-token` | Generate bearer token |
-| `/me` | Verify generated bearer token |
+| `/login` | Authenticate user credentials and issue a token |
+| `/user` | Get authenticated user |
 | `/base-agent` | Prompt base AI agent |
 | `/conversations/start` | Start conversation with an AI agent |
 | `/conversations/continue` | Continue conversation with an AI agent |
@@ -82,6 +82,8 @@ Postman collection: [storage/api-docs/laravel_ai_gateway_api.postman_collection.
 | `/images/generate` | Generate image |
 | `/audio/generate` | Generate audio (text-to-speech) |
 | `/audio/transcribe` | Generate text (transcription) |
+
+For detailed request/response payloads, query parameters, and example bodies, please import the Postman collection.
 
 ## Commands
 

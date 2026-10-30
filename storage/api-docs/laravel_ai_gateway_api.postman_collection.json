@@ -82,7 +82,7 @@
           "response": []
         },
         {
-          "name": "Generate token",
+          "name": "Login user",
           "event": [
             {
               "listen": "test",
@@ -113,7 +113,7 @@
               ]
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/path1/generate-token",
+              "raw": "http://127.0.0.1:8000/api/path1/login",
               "protocol": "http",
               "host": [
                 "127",
@@ -125,14 +125,14 @@
               "path": [
                 "api",
                 "path1",
-                "generate-token"
+                "login"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "Me (User)",
+          "name": "Get authenticated user",
           "request": {
             "auth": {
               "type": "bearer",
@@ -147,7 +147,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/path1/me",
+              "raw": "http://127.0.0.1:8000/api/path1/user",
               "protocol": "http",
               "host": [
                 "127",
@@ -159,7 +159,7 @@
               "path": [
                 "api",
                 "path1",
-                "me"
+                "user"
               ]
             }
           },

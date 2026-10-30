@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use OpenApi\Attributes as OA;
 
@@ -155,9 +156,9 @@ class SetupController extends Controller
      * accepts email/password and returns a Bearer token.
      */
     #[OA\Post(
-        path: '/path1/generate-token',
+        path: '/path1/login',
         tags: ['System Configuration Check'],
-        summary: 'Generate Bearer Token',
+        summary: 'Login User',
         description: 'Generates a bearer token used for authenticated access to secured endpoints.',
         requestBody: new OA\RequestBody(
             required: true,
@@ -235,7 +236,7 @@ class SetupController extends Controller
             new OA\Response(response: 500, description: 'Internal Server Error'),
         ]
     )]
-    public function generateToken(Request $request): JsonResponse
+    public function login(Request $request): JsonResponse
     {
         // -----------------------------------------------
         // Validate the incoming credentials.
@@ -253,7 +254,7 @@ class SetupController extends Controller
         // -----------------------------------------------
         // Verify the password matches.
         // -----------------------------------------------
-        if (! $user || ! \Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Invalid credentials.',
@@ -286,10 +287,10 @@ class SetupController extends Controller
      * This endpoint requires authentication.
      */
     #[OA\Get(
-        path: '/path1/me',
+        path: '/path1/user',
         tags: ['System Configuration Check'],
         security: [['bearerAuth' => []]],
-        summary: 'Verify Bearer Token',
+        summary: 'Get Authenticated User',
         description: 'Check if the bearer token returns the correct user.',
         responses: [
             new OA\Response(
@@ -331,7 +332,7 @@ class SetupController extends Controller
             new OA\Response(response: 500, description: 'Internal Server Error'),
         ]
     )]
-    public function me(Request $request): JsonResponse
+    public function user(Request $request): JsonResponse
     {
         return response()->json([
             'status' => 'success',

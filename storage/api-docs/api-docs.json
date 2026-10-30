@@ -90,14 +90,14 @@
                 }
             }
         },
-        "/path1/generate-token": {
+        "/path1/login": {
             "post": {
                 "tags": [
                     "System Configuration Check"
                 ],
-                "summary": "Generate Bearer Token",
+                "summary": "Login User",
                 "description": "Generates a bearer token used for authenticated access to secured endpoints.",
-                "operationId": "cf3a4f42bc90b36495204ea89d74284c",
+                "operationId": "77f3280242007efaec64d839e82a859a",
                 "requestBody": {
                     "description": "User email and password used for authorization.",
                     "required": true,
@@ -193,14 +193,14 @@
                 }
             }
         },
-        "/path1/me": {
+        "/path1/user": {
             "get": {
                 "tags": [
                     "System Configuration Check"
                 ],
-                "summary": "Verify Bearer Token",
+                "summary": "Get Authenticated User",
                 "description": "Check if the bearer token returns the correct user.",
-                "operationId": "1b6f1984d0949280ffc5c9c3ab1f87f0",
+                "operationId": "808136f6e1dd74083ea8bf64a985d1da",
                 "responses": {
                     "200": {
                         "description": "OK",
