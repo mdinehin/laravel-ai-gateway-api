@@ -4,7 +4,7 @@
 ![PHP Version](https://img.shields.io/badge/PHP-8.3%2B-777BB4?style=flat-square&logo=php&logoColor=white)
 ![Composer Version](https://img.shields.io/badge/Composer-2.x-885630?style=flat-square&logo=composer&logoColor=white)
 ![PostgreSQL Version](https://img.shields.io/badge/PostgreSQL-18.x-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 <a href="https://github.com/mdinehin/laravel-ai-gateway-api/actions/workflows/tests.yml"><img src="https://github.com/mdinehin/laravel-ai-gateway-api/workflows/Tests/badge.svg" alt="Tests"></a>
 <a href="https://github.com/mdinehin/laravel-ai-gateway-api/actions/workflows/lint.yml"><img src="https://github.com/mdinehin/laravel-ai-gateway-api/workflows/Linter/badge.svg" alt="Linter" /></a>
@@ -37,13 +37,13 @@ API credentials and keys:
 6. Run database migrations with `php artisan migrate`
 7. Run database seeds with `php artisan db:seed`
 8. Configure environment settings to prevent runtime errors
-    * cURL error: `SSL certificate OpenSSL verify result: unable to get local issuer certificate`
-    * Download the official CA bundle from [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html)
-    * Save `cacert.pem` somewhere stable, e.g., `C:\php\cacert.pem`
-    * Run `php --ini` in the terminal to locate the active `php.ini` file
-    * Open `php.ini` and set these two lines
-        * `curl.cainfo = "C:\php\cacert.pem"`
-        * `openssl.cafile = "C:\php\cacert.pem"`
+    - cURL error: `SSL certificate OpenSSL verify result: unable to get local issuer certificate`
+    - Download the official CA bundle from [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html)
+    - Save `cacert.pem` somewhere stable, e.g., `C:\php\cacert.pem`
+    - Run `php --ini` in the terminal to locate the active `php.ini` file
+    - Open `php.ini` and set these two lines
+        - `curl.cainfo = "C:\php\cacert.pem"`
+        - `openssl.cafile = "C:\php\cacert.pem"`
 9. Start the local server by running `php artisan serve`
 
 ## Prompting the AI Agent
