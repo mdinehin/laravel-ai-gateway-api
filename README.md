@@ -30,12 +30,12 @@ API credentials and keys:
 ## Installation
 
 1. Clone the repository `git clone https://github.com/mdinehin/laravel-ai-gateway-api.git`
-2. Install PHP dependencies with `composer install`
+2. Install PHP dependencies `composer install`
 3. Set up a local PostgreSQL database named `laravel_ai_gateway_api`
 4. Copy the `.env.example` file to `.env` and fill in the database credentials
-5. Add the AI LLM provider keys to `.env` with `OPENAI_API_KEY` and `GEMINI_API_KEY`
-6. Run database migrations with `php artisan migrate`
-7. Run database seeds with `php artisan db:seed`
+5. Add the AI LLM provider keys to `.env` `OPENAI_API_KEY` and `GEMINI_API_KEY`
+6. Run database migrations `php artisan migrate`
+7. Run database seeds `php artisan db:seed`
 8. Configure environment settings to prevent runtime errors
     - cURL error: `SSL certificate OpenSSL verify result: unable to get local issuer certificate`
     - Download the official CA bundle from [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html)
@@ -44,7 +44,7 @@ API credentials and keys:
     - Open `php.ini` and set these two lines
         - `curl.cainfo = "C:\php\cacert.pem"`
         - `openssl.cafile = "C:\php\cacert.pem"`
-9. Start the local server by running `php artisan serve`
+9. Start the local server `php artisan serve`
 
 ## Prompting the AI Agent
 
